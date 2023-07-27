@@ -4,6 +4,7 @@ namespace App\Infrastructure;
 
 use App\Domain\UserRepository;
 use App\Domain\UserEntity;
+use Exception;
 
 class MemoryRepository implements UserRepository
 {
@@ -16,7 +17,7 @@ class MemoryRepository implements UserRepository
                 return $user;
             }
         }
-
+        
         return null;
     }
 
@@ -43,6 +44,18 @@ class MemoryRepository implements UserRepository
 
     public function delete(string $id): void
     {
+        $existUser = false;
+        foreach ($this->users as $user) {
+            if ($user->getId() === $id) {
+                $existUser = true;
+                break;
+            }
+        }
+
+        if (!$existUser) {
+            throw new Exception("El objeto con ID $id no existe en el arreglo.");
+        }
+
         $this->users = array_filter($this->users, function($user) use ($id) {
             return $user->getId() !== $id;
         });

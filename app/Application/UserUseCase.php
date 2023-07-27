@@ -3,6 +3,7 @@ namespace App\Application;
 
 use App\Domain\UserRepository;
 use App\Domain\UserEntity;
+use Exception;
 
 class UserUseCase
 {
@@ -49,6 +50,8 @@ class UserUseCase
         if ($user !== null) {
             $user->update($email, $password, $name, $phone);
             $this->userRepository->update($user);
+        } else {
+            throw new Exception("El objeto con ID $id no existe en el arreglo.");
         }
     }
 
