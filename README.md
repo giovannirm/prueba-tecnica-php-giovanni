@@ -8,11 +8,10 @@ Acceder a la carpeta public
 `cd public`
 
 Ejecutar desde la terminal
-php -S 127.0.0.1:8080
 
-Entrar al navegador a la ruta
+`php -S 127.0.0.1:8080`
 
-`127.0.0.1:8080`
+Dar `ctrl + click` en el enlace `127.0.0.1:8080`
 
 # Ejecutar los Tests
 
